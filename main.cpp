@@ -7,33 +7,35 @@ Programa que mediante el uso de arreglos, matrices, ciclos repetitivos, realiza 
 */
 
 #include <iostream>
+#include <conio.h>
 #include <string.h>
 
 using namespace std;
 
 int main()
 {
-
-    int n=0;  //Variable que para almacenar el numero de alumnos que se almacenaran.
-    int m=0;  //Variable que almacenara la cantidad de notas a almacenar para cada uno de los N alumnos.
+    int n=0;  //Variable para almacenar el numero de alumnos que se almacenaran.
+    int m=0;  //Variable que almacenará la cantidad de notas a almacenar para cada uno de los N alumnos.
     char menu;
     int row; //Variables que almacenaran el indice de la fila, y por lo tanto del alumno.
-    int col; //Variable que almaenara la posicion de la columna y por tanto de la nota,
+    int col; //Variable que almacenara la posicion de la columna y por tanto de la nota,
     char resp; //Variable de respuesta para repeticion de bucle.
     bool existe; //Bandera para verificacion si el alumno existe.
     char continuar;
-    string nombre; //Variabl que servira para la busqueda de los nombres de los alumnos
-    cout<<"Programa de Registro de Notas - Escuela Manguito Tierno"<<endl<<endl;
+    string nombre; //Variable que servira para la busqueda de los nombres de los alumnos
+    float promedio;
+    float temp_prom;
+    cout<<"Programa de Registro de Notas - Escuela NAFO"<<endl<<endl;
 
     cout<<"Se procedera a registrar a los alumnos junto con sus notas"<<endl;
     cout<<"Por favor ingrese la cantidad de Alumnos a registrar: ";
     cin>>n; //Se captura la variable N que determinara la cantidad de alumnos a procesar.
-    cout<<"Ingrese Cuantas notas va a registrar por alumno: ";
+    cout<<"Ingrese cuantas notas va a registrar por alumno: ";
     cin>>m; //Se captura la varibale M que determinara la cantidad de notas que se van a procesar para cada uno de los alumnos.
     string nombres[n]; //Arreglo de N posiciones que estara destinado para que se almecenen los nombres de cada uno de los alumnos
     float promedios[n]; //Arreglo de N posiciones que podra almacenar los promedios de cada uno de los alumnos
     float mi_arreglo[n][m];//Matriz de N filas (Una para cada alumno) y de M columnas (Una para cada una de las notas)
-    system("clear");
+    system("cls");
     /*
     Se inicia el llenado de los datos, cada vez que se ejecute el ciclo externo, se registrara el nombre del alumno
     dentro del arreglo nombres[n] y tambien se van a llenar los datos de cada fila.
@@ -119,17 +121,17 @@ int main()
             cout<<"Ingrese la nota ["<<j+1<<"] del alumno ["<<i+1<<"] ("<<nombres[i]<<") : ";
             cin>>mi_arreglo[i][j]; //Para cada una de las filas, se inicia la captura de datos de manera que, solamente se ingresen las notas
         }
-        system("clear");
+        system("cls");
     }
     cout<<"Se ha terminado el ingreso de los alumnos y sus notas."<<endl<<endl;
     //Se finaliza el ciclo para el llenado de datos
     do{
-        cout<<"Seleccione Una opcion Del menu que se presenta a continuacion:"<<endl;
-        cout<<"a. Buscar registro de Notas de alumnos"<<endl;
-        cout<<"b. Ver Reporte de notas de TODOS los alumnos"<<endl;
-        cout<<"c. Determinar Promedio Global de la Clase"<<endl;
-        cout<<"d. Determinar los 3 primeros Lugares de la Clase"<<endl;
-        cout<<"e. Salir del Sistema. \n"<<endl;
+        cout<<"Seleccione una opcion del menu que se presenta a continuacion:"<<endl;
+        cout<<"a. Buscar registro de notas de alumnos"<<endl;
+        cout<<"b. Ver reporte de notas de TODOS los alumnos"<<endl;
+        cout<<"c. Determinar promedio global de la clase"<<endl;
+        cout<<"d. Determinar los 3 primeros lugares de la Clase"<<endl;
+        cout<<"e. Salir del sistema. \n"<<endl;
         cout<<"Ingrese la opcion seleccionada: ";
         cin>>menu;
         switch(menu)
@@ -142,7 +144,7 @@ int main()
                     cout<<"Ingrese nombre para buscar datos: ";
                     cin>>nombre; //Se captura el nombre del alumno que se va a buscar.
                     /*
-                        Hay que tener en cuenta que para buscar un valor en el arreglo, hay que recorrer t odo el mismo, por lo tanto,
+                        Hay que tener en cuenta que para buscar un valor en el arreglo, hay que recorrer todo el mismo, por lo tanto,
                         se debe iterar con un ciclo FOR
                     */
                     for(int i=0;i<n;i++)
@@ -169,7 +171,7 @@ int main()
                     }
                     cout<<"Si desea consultar otro registro presione cualquier tecla, de lo contrario, la tecla N o n...";
                     cin>>resp;//Captura de variable para verificar la continuacion
-                    system("clear");
+                    system("cls");
                 }while(resp !='n' && resp!='N');
                 break;
 
@@ -195,7 +197,19 @@ int main()
             case 'c':
                 //Para Calcular el promedio global de la clase, es necesario calcular el promedio individual de cada uno de los alumnos, y finalmente calcular el promedio global
                 //Para el promedio individual, recuerde que se deben sumar las M notas contenidas en cada una de las filas de la matriz y dividirlas entre M.
-                //Escriba el codigo necesario para realizarlo.
+
+                for (int i = 0; i < n; ++i) {
+                    for (int j = 0; j < m; ++j) {
+                        temp_prom += mi_arreglo[i][j];
+                    }
+                    promedios[i] = temp_prom/m;
+                    temp_prom = 0;
+                    promedio += promedios[i]/n;
+                }
+
+
+
+                cout << "El promedio global de toda la clase es: "<<promedio<<endl<<endl;
                 break;
 
             case 'd':
@@ -213,7 +227,7 @@ int main()
                 break;
 
         }
-        cout<<"¿Desea realizar otra operación? Presione Cualquier Tecla. Para salir presione n o N."<<endl;
+        cout<<"¿Desea realizar otra operacion? Presione cualquier tecla. Para salir presione n o N."<<endl;
         cin>>continuar;
         system("clear");
     }while(continuar!='n' && continuar!='N');
