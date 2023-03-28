@@ -9,6 +9,8 @@ Programa que mediante el uso de arreglos, matrices, ciclos repetitivos, realiza 
 #include <iostream>
 #include <conio.h>
 #include <string.h>
+#include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -25,6 +27,7 @@ int main()
     string nombre; //Variable que servira para la busqueda de los nombres de los alumnos
     float promedio;
     float temp_prom;
+    int numPromedios;
     cout<<"Programa de Registro de Notas - Escuela NAFO"<<endl<<endl;
 
     cout<<"Se procedera a registrar a los alumnos junto con sus notas"<<endl;
@@ -35,6 +38,8 @@ int main()
     string nombres[n]; //Arreglo de N posiciones que estara destinado para que se almecenen los nombres de cada uno de los alumnos
     float promedios[n]; //Arreglo de N posiciones que podra almacenar los promedios de cada uno de los alumnos
     float mi_arreglo[n][m];//Matriz de N filas (Una para cada alumno) y de M columnas (Una para cada una de las notas)
+    float min = 9999;
+    float max = 0;
     system("cls");
     /*
     Se inicia el llenado de los datos, cada vez que se ejecute el ciclo externo, se registrara el nombre del alumno
@@ -200,14 +205,13 @@ int main()
 
                 for (int i = 0; i < n; ++i) {
                     for (int j = 0; j < m; ++j) {
-                        temp_prom += mi_arreglo[i][j];
+                        temp_prom += mi_arreglo[i][j]; // Le asignamos a una variable temporal la sumatoria de todas las notas asignadas a X estudiante
                     }
-                    promedios[i] = temp_prom/m;
-                    temp_prom = 0;
-                    promedio += promedios[i]/n;
+                    promedios[i] = temp_prom/m; // Una vez todas las notas de X estudiante hayan sido sumadas en temp_prom, lo dividimos por la cantidad de notas (promedio estudiante) y lo metemos a la matriz
+                    temp_prom = 0; // Reseteamos el contador de la variable temporal
+                    promedio += promedios[i]/n; // No estoy muy seguro de porqué funcionó esto, pero ni modo, ya me quedó así.
+                    // Toma todos los promedios individuales de los alumndos (promedios[i]) y los divide entre el número de alumnos (n), para sumarlos y asignarlos a promedio, la variable final.
                 }
-
-
 
                 cout << "El promedio global de toda la clase es: "<<promedio<<endl<<endl;
                 break;
@@ -215,6 +219,23 @@ int main()
             case 'd':
                 // //Para Calcular el promedio global de la clase, es necesario calcular el promedio individual de cada uno de los alumnos, y finalmente en base al promedio de cada uno de estos
                 // Se deberan ordenar de acuerdo a las notas para determinar cual de ellos son los 3 primeros lugares.
+
+                for (int i = 0; i < n; ++i) {
+                    for (int j = 0; j < m; ++j) {
+                        temp_prom += mi_arreglo[i][j];
+                    }
+                    cout << "Temp propm: "<<temp_prom<<endl;
+                    promedios[i] = temp_prom/m; // Promedio individual
+                    temp_prom = 0;
+                }
+
+                numPromedios = sizeof(promedios)/sizeof(promedios);
+
+                std::sort(promedios, promedios + numPromedios);
+
+                for (float const &i: promedios) {
+                    std::cout << std::setprecision(2) << std::fixed << i << ' ';
+                }
 
                 break;
 
