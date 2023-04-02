@@ -220,23 +220,47 @@ int main()
                 // //Para Calcular el promedio global de la clase, es necesario calcular el promedio individual de cada uno de los alumnos, y finalmente en base al promedio de cada uno de estos
                 // Se deberan ordenar de acuerdo a las notas para determinar cual de ellos son los 3 primeros lugares.
 
-                for (int i = 0; i < n; ++i) {
-                    for (int j = 0; j < m; ++j) {
-                        temp_prom += mi_arreglo[i][j];
-                    }
-                    cout << "Temp propm: "<<temp_prom<<endl;
-                    promedios[i] = temp_prom/m; // Promedio individual
-                    temp_prom = 0;
-                }
+               	// Calcular el promedio individual de cada alumno
+				for (int i = 0; i < n; ++i) {
+					for (int j = 0; j < m; ++j) {
+						temp_prom += mi_arreglo[i][j];
+					}
+					promedios[i] = temp_prom/m; // Promedio individual
+					temp_prom = 0;
+				}
 
-                numPromedios = sizeof(promedios)/sizeof(promedios);
+				// Encontrar los 3 primeros lugares
+				float primerLugar = -1;
+				int primerLugarIdx = -1;
+				float segundoLugar = -1;
+				int segundoLugarIdx = -1;
+				float tercerLugar = -1;
+				int tercerLugarIdx = -1;
 
-                std::sort(promedios, promedios + numPromedios);
+				for (int i = 0; i < n; ++i) {
+					if (promedios[i] > primerLugar) {
+						tercerLugar = segundoLugar;
+						tercerLugarIdx = segundoLugarIdx;
+						segundoLugar = primerLugar;
+						segundoLugarIdx = primerLugarIdx;
+						primerLugar = promedios[i];
+						primerLugarIdx = i;
+					} else if (promedios[i] > segundoLugar) {
+						tercerLugar = segundoLugar;
+						tercerLugarIdx = segundoLugarIdx;
+						segundoLugar = promedios[i];
+						segundoLugarIdx = i;
+					} else if (promedios[i] > tercerLugar) {
+						tercerLugar = promedios[i];
+						tercerLugarIdx = i;
+					}
+				}
 
-                for (float const &i: promedios) {
-                    std::cout << std::setprecision(2) << std::fixed << i << ' ';
-                }
-
+				// Mostrar los 3 primeros lugares con nombre y promedio obtenido
+				cout << "Los 3 primeros lugares de la clase son:" << endl;
+				cout << "1. " << nombres[primerLugarIdx] << " con promedio de " << primerLugar << endl;
+				cout << "2. " << nombres[segundoLugarIdx] << " con promedio de " << segundoLugar << endl;
+				cout << "3. " << nombres[tercerLugarIdx] << " con promedio de " << tercerLugar << endl;
                 break;
 
             case 'e':
