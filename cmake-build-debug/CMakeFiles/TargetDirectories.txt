@@ -1,3 +1,3 @@
-C:/Users/E095713/Documents/UDB_projects/Desafio2UDeBe/cmake-build-debug/CMakeFiles/Desafio2UDeBe.dir
-C:/Users/E095713/Documents/UDB_projects/Desafio2UDeBe/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/E095713/Documents/UDB_projects/Desafio2UDeBe/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/PC/OneDrive/Escritorio/ESCRITORIO/PDR/Desafio2UDeBe/cmake-build-debug/CMakeFiles/Desafio2UDeBe.dir
+C:/Users/PC/OneDrive/Escritorio/ESCRITORIO/PDR/Desafio2UDeBe/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/PC/OneDrive/Escritorio/ESCRITORIO/PDR/Desafio2UDeBe/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -230,12 +230,12 @@ int main()
 				}
 
 				// Encontrar los 3 primeros lugares
-				float primerLugar = -1;
-				int primerLugarIdx = -1;
-				float segundoLugar = -1;
-				int segundoLugarIdx = -1;
-				float tercerLugar = -1;
-				int tercerLugarIdx = -1;
+				float primerLugar;
+				int primerLugarIdx;
+				float segundoLugar;
+				int segundoLugarIdx;
+				float tercerLugar;
+				int tercerLugarIdx;
 
 				for (int i = 0; i < n; ++i) {
 					if (promedios[i] > primerLugar) {
